@@ -1,6 +1,9 @@
 package providers
 
 import (
+	"database/sql"
+	"fmt"
+
 	"He110/PersonalWebSite/internal"
 	"He110/PersonalWebSite/internal/providers/gql_provider"
 	"He110/PersonalWebSite/internal/providers/health_provider"
@@ -24,6 +27,10 @@ func BuildContainer() (*dig.Container, error) {
 		},
 		func(cfg *internal.Config, l *zap.Logger) *health_provider.HealthServer {
 			return health_provider.NewHealthServer(cfg.HealthPort, "/", l)
+		},
+		func(cfg *internal.Config) (*sql.DB, error) {
+			conUrl := fmt.Sprintf("%s:%s@/%s", cfg.DBUser, cfg.DBPassword, cfg.DBSchema)
+			return sql.Open("mysql", fmt.Sprintf(conUrl))
 		},
 	}
 
