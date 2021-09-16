@@ -10,6 +10,7 @@ import (
 
 	"He110/PersonalWebSite/internal/providers"
 	"He110/PersonalWebSite/internal/providers/gql_provider"
+	"He110/PersonalWebSite/internal/providers/health_provider"
 	"github.com/joho/godotenv"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
@@ -34,31 +35,34 @@ func main() {
 
 	gr, ctx := errgroup.WithContext(context.Background())
 
-	gr.Go(func() error {
-		errChan := make(chan error, 1)
-		err := container.Invoke(func(gqlServer *gql_provider.GqlServer) {
-			errChan <- gqlServer.ListenAndServe(ctx)
+	err = container.Invoke(func(
+		gqlServer *gql_provider.GqlServer,
+		healthServer *health_provider.HealthServer,
+	) {
+		gr.Go(func() error {
+			return gqlServer.ListenAndServe(ctx)
 		})
-		if err != nil {
-			return err
+		gr.Go(func() error {
+			return healthServer.ListenAndServe(ctx)
+		})
+		gr.Go(func() error {
+			signals := make(chan os.Signal, 1)
+			signal.Notify(signals, syscall.SIGTERM, syscall.SIGINT)
+			defer signal.Stop(signals)
+
+			select {
+			case <-ctx.Done():
+				return ctx.Err()
+			case <-signals:
+				return errStopped
+			}
+		})
+		if err := gr.Wait(); err != nil && err != errStopped {
+			t1.Fatal("terminating due to caught error", zap.Error(err))
 		}
-		return <- errChan
 	})
 
-	gr.Go(func() error {
-		signals := make(chan os.Signal, 1)
-		signal.Notify(signals, syscall.SIGTERM, syscall.SIGINT)
-		defer signal.Stop(signals)
-
-		select {
-		case <- ctx.Done():
-			return ctx.Err()
-		case <- signals:
-			return errStopped
-		}
-	})
-
-	if err := gr.Wait(); err != nil && err != errStopped {
-		t1.Fatal("terminating due to caught error", zap.Error(err))
+	if err != nil {
+		t1.Fatal("dependency invoke failed", zap.Error(err))
 	}
 }

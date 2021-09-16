@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	logPrefix = "GQL_SERVER"
+	logPrefix       = "GQL_SERVER"
 	playgroundTitle = "GraphQL playground"
 )
 
@@ -21,7 +21,7 @@ type GqlServer struct {
 	Port               string
 	MainEndpoint       string
 	PlaygroundEndpoint string
-	Logger *zap.Logger
+	Logger             *zap.Logger
 }
 
 func NewGqlServer(Port, MainEndpoint, PlaygroundEndpoint string, l *zap.Logger) *GqlServer {
@@ -29,23 +29,19 @@ func NewGqlServer(Port, MainEndpoint, PlaygroundEndpoint string, l *zap.Logger) 
 		Port:               Port,
 		MainEndpoint:       MainEndpoint,
 		PlaygroundEndpoint: PlaygroundEndpoint,
-		Logger: l.With(zap.String("prefix", logPrefix)),
+		Logger:             l.With(zap.String("prefix", logPrefix)),
 	}
 }
 
 func (s *GqlServer) ListenAndServe(ctx context.Context) error {
-	cfg := graph.Config{Resolvers:  &resolvers.Resolver{}}
+	cfg := graph.Config{Resolvers: &resolvers.Resolver{}}
 	schema := graph.NewExecutableSchema(cfg)
 	srv := handler.NewDefaultServer(schema)
 
-	router := mux.NewRouter()
-	router.Handle(s.PlaygroundEndpoint, playground.Handler(playgroundTitle, s.MainEndpoint))
-	router.Handle(s.MainEndpoint, srv)
-
 	errChan := make(chan error, 1)
 	server := http.Server{
-		Addr: ":" + s.Port,
-		Handler: router,
+		Addr:    ":" + s.Port,
+		Handler: s.prepareHandler(srv),
 	}
 	go func() {
 		errChan <- server.ListenAndServe()
@@ -54,15 +50,20 @@ func (s *GqlServer) ListenAndServe(ctx context.Context) error {
 	s.Logger.Info("gql server is ready to be served on port " + s.Port)
 
 	select {
-	case err := <- errChan:
+	case err := <-errChan:
 		s.Logger.Warn("gql stopped because of error")
 		return err
-	case <- ctx.Done():
+	case <-ctx.Done():
 		err := server.Shutdown(ctx)
 		s.Logger.Info("gql server was shut downed by context")
 		return err
 	}
 }
 
-func (s *GqlServer) registerHandlers() {
+func (s *GqlServer) prepareHandler(srv *handler.Server) http.Handler {
+	router := mux.NewRouter()
+	router.Handle(s.PlaygroundEndpoint, playground.Handler(playgroundTitle, s.MainEndpoint))
+	router.Handle(s.MainEndpoint, srv)
+
+	return router
 }
