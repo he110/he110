@@ -1,30 +1,34 @@
 package main
 
 import (
-	graph2 "He110/PersonalWebSite/internal/graph"
-	generated2 "He110/PersonalWebSite/internal/graph/generated"
-
 	"log"
 	"net/http"
-	"os"
+
+	"He110/PersonalWebSite/internal/graph"
+	"He110/PersonalWebSite/internal/graph/resolvers"
+	"github.com/joho/godotenv"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 )
 
-const defaultPort = "8080"
+func init() {
+	if err := godotenv.Load(); err != nil {
+		log.Print("no .env file was found")
+	}
+}
 
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = defaultPort
+	config, err := NewConfig()
+	if err != nil {
+		log.Fatal("cannot initialize app config")
 	}
 
-	srv := handler.NewDefaultServer(generated2.NewExecutableSchema(generated2.Config{Resolvers: &graph2.Resolver{}}))
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &resolvers.Resolver{}}))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	http.Handle("/query", srv)
+	http.Handle("/playground", srv)
 
-	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Printf("connect to http://localhost:%s/ for GraphQL playground", config.Port)
+	log.Fatal(http.ListenAndServe(":"+config.Port, nil))
 }
