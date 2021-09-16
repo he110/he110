@@ -1,2 +1,12 @@
-  version:
-  tasks:
+version: 3
+
+tasks:
+  run:
+    desc: Starts GQL server with playground
+    cmds:
+      - go run ./main.go
+
+  generate:
+    desc: Generates code based on GQL schema and Protobuf files
+    cmds:
+      - gqlgen generate --config config/gqlgen.yml
