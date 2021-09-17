@@ -3,13 +3,14 @@
 package graph
 
 import (
-	"He110/PersonalWebSite/internal/graph/model"
 	"bytes"
 	"context"
 	"errors"
 	"strconv"
 	"sync"
 	"sync/atomic"
+
+	"He110/PersonalWebSite/internal/graph/model"
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"

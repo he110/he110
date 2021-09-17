@@ -4,9 +4,10 @@ package resolvers
 // will be copied through when generating and any unknown code will be moved to the end.
 
 import (
-	"He110/PersonalWebSite/internal/graph"
 	"context"
 	"fmt"
+
+	"He110/PersonalWebSite/internal/graph"
 )
 
 func (r *queryResolver) Version(ctx context.Context) (string, error) {

@@ -2,11 +2,11 @@ version: 3
 
 tasks:
   run:
-    desc: Starts GQL server with playground
+    desc: Starts project
     cmds:
-      - go run ./main.go
+      - cd backend && go run ./cmd/main.go
 
   generate:
     desc: Generates code based on GQL schema and Protobuf files
     cmds:
-      - gqlgen generate --config config/gqlgen.yml
+      - gqlgen generate --config backend/config/gqlgen.yml

@@ -4,9 +4,10 @@ package resolvers
 // will be copied through when generating and any unknown code will be moved to the end.
 
 import (
-	"He110/PersonalWebSite/internal/graph/model"
 	"context"
 	"fmt"
+
+	"He110/PersonalWebSite/internal/graph/model"
 )
 
 func (r *queryResolver) Activities(ctx context.Context) ([]*model.ActivityItem, error) {
