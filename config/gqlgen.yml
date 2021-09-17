@@ -1,4 +1,5 @@
 schema:
+  - internal/graph/schema/*.graphql
   - internal/graph/schema/*.graphqls
 
 exec:

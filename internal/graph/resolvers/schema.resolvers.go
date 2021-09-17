@@ -5,24 +5,15 @@ package resolvers
 
 import (
 	"He110/PersonalWebSite/internal/graph"
-	"He110/PersonalWebSite/internal/graph/model"
 	"context"
 	"fmt"
 )
 
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
+func (r *queryResolver) Version(ctx context.Context) (string, error) {
 	panic(fmt.Errorf("not implemented"))
 }
-
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
-// Mutation returns graph.MutationResolver implementation.
-func (r *Resolver) Mutation() graph.MutationResolver { return &mutationResolver{r} }
 
 // Query returns graph.QueryResolver implementation.
 func (r *Resolver) Query() graph.QueryResolver { return &queryResolver{r} }
 
-type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
