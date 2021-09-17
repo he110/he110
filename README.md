@@ -23,8 +23,15 @@
 
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=he110&show_icons=true&theme=dark&cache_seconds=1800&locale=en&layout=compact" alt="he110" /></p>
 
-### Blogs posts
+### Dev.to Articles
 <!-- BLOG-POST-LIST:START -->
 - [Investigating an incident: how to log effectively (PHP)](https://dev.to/he110/investigating-an-incident-how-to-log-effectively-php-105o)
 - [PHP-backend Roadmap](https://dev.to/he110/php-backend-roadmap-2j1a)
 <!-- BLOG-POST-LIST:END -->
+
+### Other Materials
+- `Podcast` [Чем занимается PHP-разработчик: стартапы, проекты и учёба](https://podcasts.apple.com/ru/podcast/выхожу-с-понедельника/id1527806130?i=1000535545400)
+- `Article` [Путь PHP-разработчика](https://gb.ru/posts/roadmap-php-developer)
+- `Article` [По следам происшествия: как логировать эффективно](https://gb.ru/posts/po-sledam-proisshestviya-kak-logirovat-ehffektivno)
+- `Podcast` [Hexlet Podcast: Интервью с Ильёй Зобенько (Юла, Mail.ru Group) о PHP](https://podcasts.apple.com/ru/podcast/hexlet-%D1%85%D0%B5%D0%BA%D1%81%D0%BB%D0%B5%D1%82/id1464983290?i=1000502138932)
+- `Article` [От курьера до директора IT-департамента за три года](https://rb.ru/young/ot-kurera-do-direktora/)
