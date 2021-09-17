@@ -1,6 +1,8 @@
 syntax = 'proto3';
 
 option go_package = "internal/generated";
+option php_namespace = "Generated";
+option php_class_prefix = "Prototype";
 
 message ActivityItem {
   int64 Id = 1;

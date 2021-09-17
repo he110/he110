@@ -11,4 +11,4 @@ tasks:
     cmds:
       - cd backend && gqlgen generate --config config/gqlgen.yml
       - protoc --go_out=backend protos/*.proto
-      - protoc --php_out=admin/src/Generated protos/*.proto
+      - protoc --php_out=admin/proto -I. protos/*.proto
