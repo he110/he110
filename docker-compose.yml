@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  personal_mysql:
+    container_name: personal_mysql
+    image: mysql:5.7
+    ports:
+    - 3306:3306
+    volumes:
+    - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: personal
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+volumes:
+  db_data:

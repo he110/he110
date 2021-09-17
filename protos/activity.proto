@@ -1,0 +1,21 @@
+syntax = 'proto3';
+
+option go_package = "internal/generated";
+option php_namespace = "Generated";
+option php_class_prefix = "Prototype";
+
+message ActivityItem {
+  int64 Id = 1;
+  string Title = 2;
+  string ImageUrl = 3;
+  string Description = 4;
+  ActivityType Type = 5;
+  repeated string Labels = 6;
+  string Link = 7;
+}
+
+enum ActivityType {
+  ARTICLE = 0;
+  PODCAST = 1;
+  FACT = 2;
+}

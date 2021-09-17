@@ -22,10 +22,12 @@ type GqlServer struct {
 	MainEndpoint       string
 	PlaygroundEndpoint string
 	Logger             *zap.Logger
+	Resolver           *resolvers.Resolver
 }
 
-func NewGqlServer(Port, MainEndpoint, PlaygroundEndpoint string, l *zap.Logger) *GqlServer {
+func NewGqlServer(Resolver *resolvers.Resolver, Port, MainEndpoint, PlaygroundEndpoint string, l *zap.Logger) *GqlServer {
 	return &GqlServer{
+		Resolver:           Resolver,
 		Port:               Port,
 		MainEndpoint:       MainEndpoint,
 		PlaygroundEndpoint: PlaygroundEndpoint,
@@ -34,7 +36,7 @@ func NewGqlServer(Port, MainEndpoint, PlaygroundEndpoint string, l *zap.Logger) 
 }
 
 func (s *GqlServer) ListenAndServe(ctx context.Context) error {
-	cfg := graph.Config{Resolvers: &resolvers.Resolver{}}
+	cfg := graph.Config{Resolvers: s.Resolver}
 	schema := graph.NewExecutableSchema(cfg)
 	srv := handler.NewDefaultServer(schema)
 
