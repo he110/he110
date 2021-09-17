@@ -5,9 +5,12 @@ import (
 	"fmt"
 
 	"He110/PersonalWebSite/internal"
+	"He110/PersonalWebSite/internal/graph/resolvers"
 	"He110/PersonalWebSite/internal/providers/gql_provider"
 	"He110/PersonalWebSite/internal/providers/health_provider"
 	"He110/PersonalWebSite/internal/providers/logger_provider"
+	"He110/PersonalWebSite/internal/providers/manager/activity_manager"
+	_ "github.com/go-sql-driver/mysql"
 	"go.uber.org/dig"
 	"go.uber.org/zap"
 )
@@ -19,8 +22,14 @@ func BuildContainer() (*dig.Container, error) {
 		func() (*internal.Config, error) {
 			return internal.NewConfig()
 		},
-		func(cfg *internal.Config, l *zap.Logger) *gql_provider.GqlServer {
-			return gql_provider.NewGqlServer(cfg.Port, cfg.GqlMainEndpoint, cfg.GqlPlaygroundEndpoint, l)
+		func (am *activity_manager.ActivityManager) *resolvers.Resolver {
+			return resolvers.NewResolver(am)
+		},
+		func (db *sql.DB, l *zap.Logger) *activity_manager.ActivityManager {
+			return activity_manager.NewActivityManager(db, l)
+		},
+		func(cfg *internal.Config, l *zap.Logger, r *resolvers.Resolver) *gql_provider.GqlServer {
+			return gql_provider.NewGqlServer(r, cfg.Port, cfg.GqlMainEndpoint, cfg.GqlPlaygroundEndpoint, l)
 		},
 		func(cfg *internal.Config) (*zap.Logger, error) {
 			return logger_provider.NewLogger(cfg.LogLevel)

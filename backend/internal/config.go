@@ -9,7 +9,7 @@ type Config struct {
 	HealthPort            string `env:"HEALTH_PORT" envDefault:"8090"`
 	LogLevel              string `env:"LOG_LEVEL" envDefault:"debug"`
 	DBUser                string `env:"DB_USER" envDefault:"user"`
-	DBPassword            string `env:"DB_PASSWORD" envDefault:""`
+	DBPassword            string `env:"DB_PASSWORD" envDefault:"password"`
 	DBSchema              string `env:"DB_SCHEMA" envDefault:"personal"`
 }
 
