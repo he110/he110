@@ -54,6 +54,7 @@
 
 ### Dev.to Articles
 <!-- BLOG-POST-LIST:START -->
+- [Secure integrations with Circuit Breaker in Go](https://dev.to/he110/circuitbreaker-pattern-in-go-43cn)
 - [Investigating an incident: how to log effectively (PHP)](https://dev.to/he110/investigating-an-incident-how-to-log-effectively-php-105o)
 - [PHP-backend Roadmap](https://dev.to/he110/php-backend-roadmap-2j1a)
 <!-- BLOG-POST-LIST:END -->
