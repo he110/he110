@@ -54,6 +54,7 @@
 
 ### Dev.to Articles
 <!-- BLOG-POST-LIST:START -->
+- [Boosting up PHP-project with cache](https://dev.to/he110/boosting-up-php-project-with-cache-16hi)
 - [Secure integrations with Circuit Breaker in Go](https://dev.to/he110/circuitbreaker-pattern-in-go-43cn)
 - [Investigating an incident: how to log effectively (PHP)](https://dev.to/he110/investigating-an-incident-how-to-log-effectively-php-105o)
 - [PHP-backend Roadmap](https://dev.to/he110/php-backend-roadmap-2j1a)
