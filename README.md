@@ -8,7 +8,7 @@
 
 <img align="right" src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif?cid=ecf05e47ar7swy9hvr64ukctoq0lm06s00tz0ths8lvn9p8w&rid=giphy.gif&ct=g">
 
-- 🔭 I’m currently working on [Youla Project (VK Team)](https://you.la)
+- 🔭 I’m currently working on [Youla Project (VK)](https://you.la)
 
 - 📝 I regularly write articles on [https://dev.to/he110](https://dev.to/he110)
 
