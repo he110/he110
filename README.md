@@ -67,4 +67,4 @@
 - `Article` [По следам происшествия: как логировать эффективно](https://gb.ru/posts/po-sledam-proisshestviya-kak-logirovat-ehffektivno)
 - `Podcast` [Hexlet Podcast: Интервью с Ильёй Зобенько (Юла, Mail.ru Group) о PHP](https://podcasts.apple.com/ru/podcast/hexlet-%D1%85%D0%B5%D0%BA%D1%81%D0%BB%D0%B5%D1%82/id1464983290?i=1000502138932)
 - `Article` [От курьера до директора IT-департамента за три года](https://rb.ru/young/ot-kurera-do-direktora/)
-- `Article` [Что выбрать — frontend или backend](https://gb.ru/posts/chto-vybrat-frontend-ili-backend)
+- `Article` [Что выбрать — frontend или backend](https://gb.ru/posts/chto-vybrat-frontend-ili-backend) 
