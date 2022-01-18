@@ -54,6 +54,7 @@
 
 ### Dev.to Articles
 <!-- BLOG-POST-LIST:START -->
+- [TypeScript. Advanced Project Setup](https://dev.to/he110/typescript-advanced-project-setup-4l04)
 - [TypeScript. First glance](https://dev.to/he110/typescript-first-glance-407c)
 - [Boosting up PHP-project with cache](https://dev.to/he110/boosting-up-php-project-with-cache-16hi)
 - [Secure integrations with Circuit Breaker in Go](https://dev.to/he110/circuitbreaker-pattern-in-go-43cn)
