@@ -63,7 +63,7 @@
 <!-- BLOG-POST-LIST:END -->
 
 ### Other Materials
-– `Article` [Будут ли востребованы разработчики на PHP?](https://blog.skillfactory.ru/budut-li-vostrebovany-razrabotchiki-na-php/)
+- `Article` [Будут ли востребованы разработчики на PHP?](https://blog.skillfactory.ru/budut-li-vostrebovany-razrabotchiki-na-php/)
 - `Article` [Ускоряем PHP-проект с помощью кэширования](https://gb.ru/posts/uskoryaem-php-proekt-s-pomoshchyu-kehshirovaniya)
 - `Podcast` [Чем занимается PHP-разработчик: стартапы, проекты и учёба](https://podcasts.apple.com/ru/podcast/выхожу-с-понедельника/id1527806130?i=1000535545400)
 - `Article` [Путь PHP-разработчика](https://gb.ru/posts/roadmap-php-developer)
